@@ -2,3 +2,5 @@ SCREEN_W, SCREEN_H = 920, 300
 SCREEN_SIZE = (SCREEN_W, SCREEN_H)
 
 BG_MULTI = 2
+
+FONT = 'svgafix.fon'
