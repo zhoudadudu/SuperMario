@@ -18,7 +18,7 @@ class Info:
 
     def create_info_labels(self):
         self.info_labels = []
-        self.info_labels.append((self.create_label('MARIO'), (100, 50)))
+        self.info_labels.append((self.create_label('LF2'), (100, 50)))
 
     def create_label(self, label, size=40, width_scale=1.25, height_scale=1):
         font = pygame.font.SysFont(C.FONT, size)
