@@ -3,4 +3,6 @@ SCREEN_SIZE = (SCREEN_W, SCREEN_H)
 
 BG_MULTI = 2
 
+GRAVITY = 1.0
+
 FONT = 'svgafix.fon'
