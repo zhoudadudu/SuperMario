@@ -18,7 +18,7 @@ class MainMenu:
         self.background = pygame.transform.scale(self.background, (int(self.background_rect.width * C.BG_MULTI),
                                                                    int(self.background_rect.height * C.BG_MULTI)))
         self.viewport = setup.SCREEN.get_rect()
-        self.caption = tools.get_image(setup.GRAPHICS['0'], 0, 0, 79, 79, (0,0,0), C.BG_MULTI)
+        self.caption = tools.get_image(setup.GRAPHICS['0'], 0, 0, 79, 79, (0, 0, 0), C.BG_MULTI)
 
     def setup_player(self):
         pass
@@ -37,7 +37,7 @@ class MainMenu:
             self.cursor.rect.y = 64
         elif keys[pygame.K_DOWN]:
             self.cursor.state = '2P'
-            self.cursor.rect.y = 84
+            self.cursor.rect.y = 114
         elif keys[pygame.K_RETURN]:
             if self.state == '1P':
                 pass
@@ -46,7 +46,7 @@ class MainMenu:
 
     def update(self, surface, keys):
 
-        self.setup_cursor(keys)
+        self.update_cursor(keys)
 
         surface.blit(self.background, self.viewport)
         surface.blit(self.caption, (50, 50))

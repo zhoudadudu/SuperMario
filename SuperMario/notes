@@ -1,1 +1,4 @@
-2022年11月6号晚上10点53，跟着趣派编程的视频做，做到第六集加载图片的时候一直报错说‘pygame.error: video system not initialized’，最后发现是第五集最后up把方法分散到各个文件，我在main文件里没有导入其他文件所致。。。
+2022年11月6号晚上10点53，跟着趣派编程的视频做，做到第六集加载图片的时候一直报错说‘pygame.error: video system not initialized’，
+最后发现是第五集最后up把方法分散到各个文件，我在main文件里没有导入其他文件所致。。。
+
+2022年11月8号下午两点半，遇到报错，看了半天发现是函数名打错，update_cursor打成了setup_cursor。。。
