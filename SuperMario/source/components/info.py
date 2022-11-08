@@ -1,6 +1,7 @@
 import pygame
 from .. import constants as C
 from . import coin
+from .. import setup, tools
 pygame.font.init()
 
 class Info:
@@ -17,6 +18,14 @@ class Info:
             self.state_labels.append((self.create_label('2 PLAYER GAME'), (400, 150)))
             self.state_labels.append((self.create_label('TOP - '), (400, 50)))
             self.state_labels.append((self.create_label('000000'), (500, 50)))
+
+        elif self.state == 'load_screen':
+            self.state_labels.append((self.create_label('WORLD'), (400, 100)))
+            self.state_labels.append((self.create_label('1 - 1'), (400, 150)))
+            self.state_labels.append((self.create_label('TOP - '), (400, 50)))
+            self.state_labels.append((self.create_label('000000'), (500, 50)))
+            self.player_image = tools.get_image(setup.GRAPHICS['0'], 0, 0, 79, 79, (0, 0, 0), C.BG_MULTI)
+
 
     def create_info_labels(self):
         self.info_labels = []
@@ -40,3 +49,6 @@ class Info:
             surface.blit(label[0], label[1])
 
             surface.blit(self.flash_coin.image, self.flash_coin.rect)
+
+        if self.state == 'load_screen':
+            surface.blit(self.player_image, (100, 100))
