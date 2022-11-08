@@ -7,6 +7,7 @@ class Game:
     def __init__(self):
         self.screen = pygame.display.get_surface()
         self.clock = pygame.time.Clock()
+        self.keys = pygame.key.get_pressed()
 
     def run(self, state):
 
@@ -19,7 +20,7 @@ class Game:
                 elif event.type == pygame.KEYUP:
                     self.keys = pygame.key.get_pressed()
 
-            state.update(self.screen)
+            state.update(self.screen, self.keys)
 
             pygame.display.update()
             self.clock.tick(60)

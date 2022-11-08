@@ -2,7 +2,7 @@ import pygame
 from .. import setup
 from .. import tools
 from .. import constants as C
-from .. components import info
+from ..components import info
 
 
 class MainMenu:
@@ -24,12 +24,33 @@ class MainMenu:
         pass
 
     def setup_cursor(self):
-        pass
+        self.cursor = pygame.sprite.Sprite()
+        self.cursor.image = tools.get_image(setup.GRAPHICS['weapon5'], 0, 0, 48, 48, (0, 0, 0), C.BG_MULTI)
+        rect = self.cursor.image.get_rect()
+        rect.x, rect.y = (320, 64)
+        self.cursor.rect = rect
+        self.cursor.state = '1P'
 
-    def update(self, surface):
+    def update_cursor(self, keys):
+        if keys[pygame.K_UP]:
+            self.cursor.state = '1P'
+            self.cursor.rect.y = 64
+        elif keys[pygame.K_DOWN]:
+            self.cursor.state = '2P'
+            self.cursor.rect.y = 84
+        elif keys[pygame.K_RETURN]:
+            if self.state == '1P':
+                pass
+            elif self.state == '2P':
+                pass
+
+    def update(self, surface, keys):
+
+        self.setup_cursor(keys)
 
         surface.blit(self.background, self.viewport)
-        surface.blit(self.caption, (170, 100))
+        surface.blit(self.caption, (50, 50))
+        surface.blit(self.cursor.image, self.cursor.rect)
 
         self.info.update()
         self.info.draw(surface)
