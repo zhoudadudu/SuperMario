@@ -21,7 +21,7 @@ class Level:
         self.background_rect = self.background.get_rect()
 
     def setup_player(self):
-        self.player = player.Player('0')
+        self.player = player.Player('player')
         self.player.rect.x = 100
         self.player.rect.y = 100
 
