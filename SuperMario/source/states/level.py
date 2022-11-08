@@ -2,6 +2,7 @@ from ..components import info
 import pygame
 from .. import tools, setup
 from .. import constants as C
+from .. components import player
 
 
 class Level:
@@ -10,6 +11,7 @@ class Level:
         self.next = None
         self.info = info.Info('level')
         self.setup_background()
+        self.setup_player()
 
     def setup_background(self):
         self.background = setup.GRAPHICS['bc2']
@@ -18,10 +20,21 @@ class Level:
                                                                    int(rect.height * C.BG_MULTI)))
         self.background_rect = self.background.get_rect()
 
+    def setup_player(self):
+        self.player = player.Player('0')
+        self.player.rect.x = 100
+        self.player.rect.y = 100
+
     def update(self, surface, keys):
+        self.player.update(keys)
+        self.update_player_position()
         self.draw(surface)
 
+    def update_player_position(self):
+        self.player.rect.x += self.player.x_vel
+        self.player.rect.y += self.player.y_vel
     def draw(self, surface):
 
         surface.blit(self.background, (0, 0))
+        surface.blit(self.player.image, self.player.rect)
         #self.info.draw(surface)
