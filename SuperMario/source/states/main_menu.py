@@ -52,8 +52,8 @@ class MainMenu:
         self.update_cursor(keys)
 
         surface.blit(self.background, self.viewport)
-        surface.blit(self.caption, (50, 200))
+        #surface.blit(self.caption, (50, 200))
         surface.blit(self.cursor.image, self.cursor.rect)
 
-        self.info.update()
+        #self.info.update()
         self.info.draw(surface)
