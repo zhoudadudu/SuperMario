@@ -1,7 +1,9 @@
 import pygame
-from .. import constants as C
+
 from . import coin
+from .. import constants as C
 from .. import setup, tools
+
 pygame.font.init()
 
 class Info:
@@ -14,22 +16,22 @@ class Info:
     def create_state_labels(self):
         self.state_labels = []
         if self.state == 'main_menu':
-            self.state_labels.append((self.create_label('1 PLAYER GAME'), (400, 100)))
-            self.state_labels.append((self.create_label('2 PLAYER GAME'), (400, 150)))
-            self.state_labels.append((self.create_label('TOP - '), (400, 50)))
-            self.state_labels.append((self.create_label('000000'), (500, 50)))
+            self.state_labels.append((self.create_label('START GAME'), (390, 220)))
+            self.state_labels.append((self.create_label('EXIT GAME'), (400, 320)))
+            #self.state_labels.append((self.create_label('TOP - '), (400, 50)))
+            #self.state_labels.append((self.create_label('000000'), (500, 50)))
 
         elif self.state == 'load_screen':
             self.state_labels.append((self.create_label('WORLD'), (400, 100)))
-            self.state_labels.append((self.create_label('1 - 1'), (400, 150)))
-            self.state_labels.append((self.create_label('TOP - '), (400, 50)))
-            self.state_labels.append((self.create_label('000000'), (500, 50)))
+            #self.state_labels.append((self.create_label('1 - 1'), (400, 150)))
+            #self.state_labels.append((self.create_label('TOP - '), (400, 50)))
+            #self.state_labels.append((self.create_label('000000'), (500, 50)))
             self.player_image = tools.get_image(setup.GRAPHICS['0'], 0, 0, 79, 79, (0, 0, 0), C.BG_MULTI)
 
 
     def create_info_labels(self):
         self.info_labels = []
-        self.info_labels.append((self.create_label('LF2'), (100, 50)))
+        self.info_labels.append((self.create_label('LF2'), (100, 150)))
 
     def create_label(self, label, size=40, width_scale=1.25, height_scale=1):
         font = pygame.font.SysFont(C.FONT, size)

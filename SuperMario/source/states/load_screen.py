@@ -1,5 +1,6 @@
-from ..components import info
 import pygame
+
+from ..components import info
 
 
 class LoadScreen:
@@ -20,4 +21,4 @@ class LoadScreen:
 
     def draw(self, surface):
         surface.fill((0, 0, 0))
-        self.info.draw(surface)
+        #self.info.draw(surface)

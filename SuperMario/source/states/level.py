@@ -1,8 +1,9 @@
-from ..components import info
 import pygame
-from .. import tools, setup
+
 from .. import constants as C
-from .. components import player
+from .. import setup
+from ..components import info
+from ..components import player
 
 
 class Level:

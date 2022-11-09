@@ -1,6 +1,8 @@
 import pygame
-from .. import tools, setup
+
 from .. import constants as C
+from .. import tools, setup
+
 
 class FlashingCoin(pygame.sprite.Sprite):
     def __init__(self):
@@ -11,14 +13,14 @@ class FlashingCoin(pygame.sprite.Sprite):
         self.load_frames(frame_rects)
         self.image = self.frame[self.frame_index]
         self.rect = self.image.get_rect()
-        self.rect.x = 680
-        self.rect.y = 50
+        self.rect.x = 700
+        self.rect.y = 200
         self.timer = 0
 
     def load_frames(self, frame_rects):
         sheet = setup.GRAPHICS['0']
         for frame_rect in frame_rects:
-            self.frame.append(tools.get_image(sheet, *frame_rect, (0, 0, 0), C.BG_MULTI))
+            self.frame.append(tools.get_image(sheet, *frame_rect, (0, 0, 0), C.PLAYER_MULTI))
 
     def update(self):
         self.current_time = pygame.time.get_ticks()

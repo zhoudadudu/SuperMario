@@ -1,8 +1,11 @@
-import pygame
-from .. import tools, setup
-from .. import constants as C
 import json
 import os
+
+import pygame
+
+from .. import constants as C
+from .. import tools, setup
+
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, name):
@@ -79,7 +82,7 @@ class Player(pygame.sprite.Sprite):
         for group, group_frame_rects in frame_rects.items():
             for frame_rect in group_frame_rects:
                 right_image = tools.get_image(sheet, frame_rect['x'],frame_rect['y'],
-                                              frame_rect['width'], frame_rect['height'], (0, 0, 0), C.BG_MULTI)
+                                              frame_rect['width'], frame_rect['height'], (0, 0, 0), C.PLAYER_MULTI)
                 left_image = pygame.transform.flip(right_image, True, False)
                 if group == 'right_small_normal':
                     self.right_small_normal_frames.append(right_image)
