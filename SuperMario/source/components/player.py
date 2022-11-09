@@ -206,11 +206,6 @@ class Player(pygame.sprite.Sprite):
     def fall(self, keys):
         self.y_vel = self.calc_vel(self.y_vel, self.gravity, self.max_y_vel)
 
-        # TODO workaround, will move to level.py for collision detection
-        if self.rect.bottom > C.GROUND_HEIGHT:
-            self.rect.bottom = C.GROUND_HEIGHT
-            self.y_vel = 0
-            self.state = 'walk'
 
         if keys[pygame.K_RIGHT]:
             self.x_vel = self.calc_vel(self.x_vel, self.x_accel, self.max_x_vel, True)
