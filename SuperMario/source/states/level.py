@@ -42,7 +42,7 @@ class Level:
 
 
     def setup_player(self):
-        self.player = player.Player('player')
+        self.player = player.Player('mario')
         self.player.rect.x = self.game_window.x + self.player_x
         self.player.rect.bottom = self.player_y
 
@@ -65,7 +65,9 @@ class Level:
         if self.player.x_vel > 0 and self.player.rect.centerx > third and self.game_window.right < self.end_x:
             self.game_window.x += self.player.x_vel
             self.start_x = self.game_window.x
-
+        elif self.player.x_vel < 0 and self.game_window.left > 0:
+            self.game_window.x += self.player.x_vel
+            self.start_x = self.game_window.x
 
     def draw(self, surface):
         self.game_ground.blit(self.background, self.game_window, self.game_window)

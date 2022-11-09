@@ -16,12 +16,12 @@ class MainMenu:
         self.next = 'load_screen'
 
     def setup_background(self):
-        self.background = setup.GRAPHICS['bc1']
+        self.background = setup.GRAPHICS['level_1']
         self.background_rect = self.background.get_rect()
         self.background = pygame.transform.scale(self.background, (int(self.background_rect.width * C.BG_MULTI),
                                                                    int(self.background_rect.height * C.BG_MULTI)))
         self.viewport = setup.SCREEN.get_rect()
-        self.caption = tools.get_image(setup.GRAPHICS['0'], 0, 0, 79, 79, (0, 0, 0), C.PLAYER_MULTI)
+        #self.caption = tools.get_image(setup.GRAPHICS['0'], 0, 0, 79, 79, (0, 0, 0), C.PLAYER_MULTI)
 
     def setup_player(self):
         pass

@@ -53,7 +53,7 @@ class Player(pygame.sprite.Sprite):
         self.transition_timer = 0
 
     def load_images(self):
-        sheet = setup.GRAPHICS['0']
+        sheet = setup.GRAPHICS['mario_bros']
         frame_rects = self.player_data['image_frames']
 
         self.right_small_normal_frames = []
