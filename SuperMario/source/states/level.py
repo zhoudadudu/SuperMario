@@ -61,11 +61,12 @@ class Level:
         self.player.rect.y += self.player.y_vel
 
     def update_game_window(self):
-        third = self.game_window.x + self.game_window.width / 2
+        third = self.game_window.x + self.game_window.width / 3
+        tenth = self.game_window.x + self.game_window.width / 10
         if self.player.x_vel > 0 and self.player.rect.centerx > third and self.game_window.right < self.end_x:
             self.game_window.x += self.player.x_vel
             self.start_x = self.game_window.x
-        elif self.player.x_vel < 0 and self.game_window.left > 0:
+        elif self.player.x_vel < 0 and self.player.rect.centerx < tenth and self.game_window.left > 0:
             self.game_window.x += self.player.x_vel
             self.start_x = self.game_window.x
 
