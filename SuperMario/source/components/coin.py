@@ -13,7 +13,7 @@ class FlashingCoin(pygame.sprite.Sprite):
         self.load_frames(frame_rects)
         self.image = self.frame[self.frame_index]
         self.rect = self.image.get_rect()
-        self.rect.x = 300
+        self.rect.x = 370
         self.rect.y = 200
         self.timer = 0
 

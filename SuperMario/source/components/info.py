@@ -26,8 +26,12 @@ class Info:
             #self.state_labels.append((self.create_label('WORLD'), (400, 100)))
             #self.state_labels.append((self.create_label('1 - 1'), (400, 150)))
             #self.state_labels.append((self.create_label('TOP - '), (400, 50)))
-            self.state_labels.append((self.create_label('X      {}'.format(self.game_info['lives'])), (300, 300)))
+            self.state_labels.append((self.create_label('Lives      {}'.format(self.game_info['lives'])), (300, 300)))
             self.player_image = tools.get_image(setup.GRAPHICS['0'], 0, 0, 0, 0, (0, 0, 0), C.BG_MULTI)
+
+        elif self.state == 'level':
+            self.state_labels.append((self.create_label('Lives   {}'.format(self.game_info['lives'])), (290, 50)))
+
         elif self.state == 'game_over':
             self.state_labels.append((self.create_label('GAME OVER'), (280, 300)))
 
@@ -51,13 +55,13 @@ class Info:
     def draw(self, surface):
         for label in self.state_labels:
             surface.blit(label[0], label[1])
-        for label in self.info_labels:
-            surface.blit(label[0], label[1])
+        #for label in self.info_labels:
+            #surface.blit(label[0], label[1])
 
             #surface.blit(self.flash_coin.image, self.flash_coin.rect)
 
-        if self.state == 'load_screen':
-            surface.blit(self.player_image, (100, 100))
+        #if self.state == 'load_screen':
+            #surface.blit(self.player_image, (100, 100))
 
     def draw_loadScreen(self, surface):
         for label in self.state_labels:
