@@ -30,17 +30,17 @@ class MainMenu:
         self.cursor = pygame.sprite.Sprite()
         self.cursor.image = tools.get_image(setup.GRAPHICS['weapon5'], 0, 0, 48, 48, (0, 0, 0), C.PLAYER_MULTI)
         rect = self.cursor.image.get_rect()
-        rect.x, rect.y = (300, 180)
+        rect.x, rect.y = (180, 160)
         self.cursor.rect = rect
         self.cursor.state = '1P'
 
     def update_cursor(self, keys):
         if keys[pygame.K_UP]:
             self.cursor.state = '1P'
-            self.cursor.rect.y = 180
+            self.cursor.rect.y = 160
         elif keys[pygame.K_DOWN]:
             self.cursor.state = '2P'
-            self.cursor.rect.y = 280
+            self.cursor.rect.y = 260
         elif keys[pygame.K_RETURN]:
             if self.cursor.state == '1P':
                 self.finished = True

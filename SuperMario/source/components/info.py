@@ -16,8 +16,8 @@ class Info:
     def create_state_labels(self):
         self.state_labels = []
         if self.state == 'main_menu':
-            self.state_labels.append((self.create_label('START GAME'), (390, 220)))
-            self.state_labels.append((self.create_label('EXIT GAME'), (400, 320)))
+            self.state_labels.append((self.create_label('START GAME'), (280, 220)))
+            self.state_labels.append((self.create_label('EXIT GAME'), (290, 320)))
             #self.state_labels.append((self.create_label('TOP - '), (400, 50)))
             #self.state_labels.append((self.create_label('000000'), (500, 50)))
 
@@ -27,11 +27,14 @@ class Info:
             #self.state_labels.append((self.create_label('TOP - '), (400, 50)))
             #self.state_labels.append((self.create_label('000000'), (500, 50)))
             self.player_image = tools.get_image(setup.GRAPHICS['0'], 0, 0, 0, 0, (0, 0, 0), C.BG_MULTI)
+        elif self.state == 'game_over':
+            self.state_labels.append((self.create_label('GAME OVER'), (280, 300)))
+
 
 
     def create_info_labels(self):
         self.info_labels = []
-        self.info_labels.append((self.create_label('SuperMario'), (400, 80)))
+        self.info_labels.append((self.create_label('SuperMario'), (290, 80)))
 
     def create_label(self, label, size=40, width_scale=1.25, height_scale=1):
         font = pygame.font.SysFont(C.FONT, size)

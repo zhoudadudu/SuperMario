@@ -11,7 +11,7 @@ import json
 class Level:
     def __init__(self):
         self.finished = False
-        self.next = None
+        self.next = 'game_over'
         self.info = info.Info('level')
         self.load_map_data()
         self.setup_background()
@@ -54,9 +54,18 @@ class Level:
                 self.ground_items_group.add(stuff.Item(item['x'], item['y'], item['width'], item['height'], name))
 
     def update(self, surface, keys):
+
+        self.current_time = pygame.time.get_ticks()
         self.player.update(keys)
-        self.update_player_position()
-        self.update_game_window()
+
+        if self.player.dead:
+            if self.current_time - self.player.death_timer > 3000:
+                self.finished = True
+        else:
+            self.update_player_position()
+            self.check_if_go_die()
+            self.update_game_window()
+
         self.draw(surface)
 
     def update_player_position(self):
@@ -129,3 +138,7 @@ class Level:
         surface.blit(self.game_ground, (0, 0), self.game_window)
 
         #self.info.draw(surface)
+
+    def check_if_go_die(self):
+        if self.player.rect.y > C.SCREEN_H:
+            self.player.go_die()
