@@ -4,12 +4,13 @@ from ..components import info
 
 
 class LoadScreen:
-    def __init__(self):
+    def start(self, game_info):
+        self.game_info = game_info
         self.finished = False
         self.next = 'level'
         self.duration = 2000
         self.timer = 0
-        self.info = info.Info('load_screen')
+        self.info = info.Info('load_screen', self.game_info)
 
     def update(self, surface, keys):
         self.draw(surface)
@@ -26,8 +27,10 @@ class LoadScreen:
         self.info.update()
 
 class GameOver(LoadScreen):
-    def __init__(self):
-        LoadScreen.__init__(self)
+    def start(self, game_info):
+        self.game_info = game_info
+        self.finished = False
         self.next = 'main_menu'
         self.duration = 4000
-        self.info = info.Info('game_over')
+        self.timer = 0
+        self.info = info.Info('game_over', self.game_info)

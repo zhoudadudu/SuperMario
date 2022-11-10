@@ -7,8 +7,9 @@ from .. import setup, tools
 pygame.font.init()
 
 class Info:
-    def __init__(self, state):
+    def __init__(self, state, game_info):
         self.state = state
+        self.game_info = game_info
         self.create_state_labels()
         self.create_info_labels()
         self.flash_coin = coin.FlashingCoin()
@@ -25,7 +26,7 @@ class Info:
             #self.state_labels.append((self.create_label('WORLD'), (400, 100)))
             #self.state_labels.append((self.create_label('1 - 1'), (400, 150)))
             #self.state_labels.append((self.create_label('TOP - '), (400, 50)))
-            #self.state_labels.append((self.create_label('000000'), (500, 50)))
+            self.state_labels.append((self.create_label('X      {}'.format(self.game_info['lives'])), (300, 300)))
             self.player_image = tools.get_image(setup.GRAPHICS['0'], 0, 0, 0, 0, (0, 0, 0), C.BG_MULTI)
         elif self.state == 'game_over':
             self.state_labels.append((self.create_label('GAME OVER'), (280, 300)))

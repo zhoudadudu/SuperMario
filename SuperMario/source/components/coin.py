@@ -9,28 +9,28 @@ class FlashingCoin(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.frame = []
         self.frame_index = 0
-        frame_rects = [(320, 0, 79, 79), (400, 0, 79, 79), (480, 0, 79, 79), (560, 0, 79, 79), (480, 0, 79, 79), (400, 0, 79, 79)]
+        frame_rects = [(1, 160, 5, 8), (9, 160, 5, 8), (17, 160, 5, 8), (9, 160, 5, 8), (9, 160, 5, 8)]
         self.load_frames(frame_rects)
         self.image = self.frame[self.frame_index]
         self.rect = self.image.get_rect()
-        self.rect.x = 420
+        self.rect.x = 300
         self.rect.y = 200
         self.timer = 0
 
     def load_frames(self, frame_rects):
-        sheet = setup.GRAPHICS['0']
+        sheet = setup.GRAPHICS['item_objects']
         for frame_rect in frame_rects:
             self.frame.append(tools.get_image(sheet, *frame_rect, (0, 0, 0), C.PLAYER_MULTI))
 
     def update(self):
         self.current_time = pygame.time.get_ticks()
-        frame_durations = [125, 125, 125, 125, 125, 125]
+        frame_durations = [375, 125, 125, 125, 125]
 
         if self.timer == 0:
             self.timer = self.current_time
         elif self.current_time - self.timer > frame_durations[self.frame_index]:
             self.frame_index += 1
-            self.frame_index %= 6
+            self.frame_index %= 5
             self.timer = self.current_time
 
         self.image = self.frame[self.frame_index]
