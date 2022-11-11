@@ -73,11 +73,22 @@ class Enemy(pygame.sprite.Sprite):
         if self.y_vel < 10:
             self.y_vel += self.gravity
 
+    def die(self):
+        self.rect.x += self.x_vel
+        self.rect.y += self.y_vel
+        self.y_vel += self.gravity
+        if self.rect.y > C.SCREEN_H:
+            self.kill()
+
+    def trampled(self):
+        pass
+
     def update_position(self, level):
         self.rect.x += self.x_vel
         self.check_x_collision(level)
         self.rect.y += self.y_vel
-        self.check_y_collision(level)
+        if self.state != 'die':
+            self.check_y_collision(level)
 
     def check_x_collision(self, level):
         sprite = pygame.sprite.spritecollideany(self, level.ground_items_group)
@@ -95,6 +106,17 @@ class Enemy(pygame.sprite.Sprite):
                 self.state = 'walk'
 
         level.check_will_fall(self)
+
+    def go_die(self, how):
+        self.death_timer = self.current_time
+        if how == 'bumped':
+            self.y_vel = -8
+            self.gravity = 0.6
+            self.state = 'die'
+            self.frame_index = 0
+        elif how == 'trampled':
+            self.state = 'trampled'
+
 class Goomba(Enemy):
     def __init__(self, x, y_bottom, direction, name, color):
         bright_frames_rects = [(0, 16, 16, 16), (16, 16, 16, 16), (32, 16, 16, 16)]
@@ -107,6 +129,14 @@ class Goomba(Enemy):
 
         Enemy.__init__(self, x, y_bottom, direction, name, self.frame_rects)
 
+    def trampled(self):
+        self.x_vel = 0
+        self.frame_index = 2
+        if self.death_timer == 0:
+            self.death_timer = self.current_time
+        if self.current_time - self.death_timer > 500:
+            self.kill()
+
 class Koopa(Enemy):
     def __init__(self, x, y_bottom, direction, name, color):
         bright_frames_rects = [(96, 9, 16, 22), (112, 9, 16, 22), (160, 9, 16, 22)]
@@ -118,3 +148,6 @@ class Koopa(Enemy):
             self.frame_rects = dark_frames_rects
 
         Enemy.__init__(self, x, y_bottom, direction, name, self.frame_rects)
+
+    def trampled(self):
+        pass
