@@ -84,7 +84,7 @@ class Player(pygame.sprite.Sprite):
 
         for group, group_frame_rects in frame_rects.items():
             for frame_rect in group_frame_rects:
-                right_image = tools.get_image(sheet, frame_rect['x'],frame_rect['y'],
+                right_image = tools.get_image(sheet, frame_rect['x'], frame_rect['y'],
                                               frame_rect['width'], frame_rect['height'], (0, 0, 0), C.PLAYER_MULTI)
                 left_image = pygame.transform.flip(right_image, True, False)
                 if group == 'right_small_normal':
@@ -183,7 +183,7 @@ class Player(pygame.sprite.Sprite):
                     self.state = "stand"
             else:
                 self.x_vel += self.x_accel
-                if self.x_vel < 0:
+                if self.x_vel > 0:
                     self.x_vel = 0
                     self.state = 'stand'
 
