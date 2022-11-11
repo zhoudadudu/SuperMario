@@ -80,6 +80,7 @@ class Level:
 
     def setup_enemies(self):
         self.dying_group = pygame.sprite.Group()
+        self.shell_group = pygame.sprite.Group()
         self.enemy_group = pygame.sprite.Group()
         self.enemy_group_dict = {}
         for enemy_group_data in self.map_data['enemy']:
@@ -116,6 +117,7 @@ class Level:
             self.box_group.update()
             self.enemy_group.update(self)
             self.dying_group.update(self)
+            self.shell_group.update(self)
 
         self.draw(surface)
 
@@ -145,6 +147,21 @@ class Level:
         if enemy:
             self.player.go_die()
 
+        shell = pygame.sprite.spritecollideany(self.player, self.shell_group)
+        if shell:
+            if shell.state == 'slide':
+                self.player.go_die()
+            else:
+                if self.player.rect.x < shell.rect.x:
+                    shell.x_vel = 10
+                    shell.rect.x += 40
+                    shell.direction = 1
+                else:
+                    shell.x_vel = -10
+                    shell.rect.x -= 40
+                    shell.direction = 0
+                shell.state = 'slide'
+
     def check_y_collisions(self):
         check_group = pygame.sprite.Group(self.ground_items_group, self.brick_group, self.box_group)
         collided_sprite = pygame.sprite.spritecollideany(self.player, check_group)
@@ -155,7 +172,10 @@ class Level:
         enemy = pygame.sprite.spritecollideany(self.player, self.enemy_group)
         if enemy:
             self.enemy_group.remove(enemy)
-            self.dying_group.add(enemy)
+            if enemy.name == 'koopa':
+                self.shell_group.add(enemy)
+            else:
+                self.dying_group.add(enemy)
             if self.player.y_vel < 0:
                 how = 'bumped'
             else:
@@ -212,6 +232,7 @@ class Level:
         self.box_group.draw(self.game_ground)
         self.enemy_group.draw(self.game_ground)
         self.dying_group.draw(self.game_ground)
+        self.shell_group.draw(self.game_ground)
 
 
         surface.blit(self.game_ground, (0, 0), self.game_window)
