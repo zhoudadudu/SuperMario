@@ -60,23 +60,34 @@ class Level:
     def setup_bricks_and_boxes(self):
         self.brick_group = pygame.sprite.Group()
         self.box_group = pygame.sprite.Group()
+        self.coin_group = pygame.sprite.Group()
+        self.powerup_group = pygame.sprite.Group()
 
         if 'brick' in self.map_data:
             for brick_data in  self.map_data['brick']:
                 x, y = brick_data['x'], brick_data['y']
                 brick_type = brick_data['type']
-                if 'brick_num' in brick_data:
-                    # TODO batch bricks
-                    pass
+                if brick_type == 0:
+                    if 'brick_num' in brick_data:
+                        # TODO batch bricks
+                        pass
+                    else:
+                        self.brick_group.add(brick.Brick(x, y, brick_type, None))
+
+                elif brick_type == 1:
+                    self.brick_group.add(brick.Brick(x, y, brick_type, self.coin_group))
                 else:
-                    self.brick_group.add(brick.Brick(x, y, brick_type))
+                    self.brick_group.add(brick.Brick(x, y, brick_type, self.powerup_group))
 
 
         if 'box' in self.map_data:
             for box_data in  self.map_data['box']:
                 x, y = box_data['x'], box_data['y']
                 box_type = box_data['type']
-                self.box_group.add(box.Box(x, y, box_type))
+                if box_type == 1:
+                    self.box_group.add(box.Box(x, y, box_type, self.coin_group))
+                else:
+                    self.box_group.add(box.Box(x, y, box_type, self.powerup_group))
 
     def setup_enemies(self):
         self.dying_group = pygame.sprite.Group()
@@ -118,6 +129,8 @@ class Level:
             self.enemy_group.update(self)
             self.dying_group.update(self)
             self.shell_group.update(self)
+            self.coin_group.update()
+            self.box_group.update()
 
         self.draw(surface)
 
@@ -262,6 +275,8 @@ class Level:
         self.enemy_group.draw(self.game_ground)
         self.dying_group.draw(self.game_ground)
         self.shell_group.draw(self.game_ground)
+        self.coin_group.draw(self.game_ground)
+        self.powerup_group.draw(self.game_ground)
 
 
         surface.blit(self.game_ground, (0, 0), self.game_window)
